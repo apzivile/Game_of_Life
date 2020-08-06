@@ -30,11 +30,11 @@ public class Main {
         int number = 0;
         int numberOfGenerations = 1;
         //System.out.println(toString(previousGeneration));
-        while (number < 10) {
+        while (number<20) {
             previousGeneration = nextGeneration(previousGeneration, size, numberOfGenerations);
             numberOfGenerations++;
             number++;
-            // Thread.sleep(1000);
+            Thread.sleep(500);
         }
 
 
