@@ -6,16 +6,22 @@ import java.util.Scanner;
 
 public class Main {
     private static Random random;
+    private static int numberOfGenerations = 1;
+    private static String[][] previousGeneration;
+    private static int aliveNumber = 0;
+
 
     public static void main(String[] args) throws InterruptedException {
 
+        GameOfLife gameOfLife = new GameOfLife();
+        //gameOfLife;
         Scanner scanner = new Scanner(System.in);
-        final int size = scanner.nextInt();
+        final int size = 20;
         //final long seed = scanner.nextLong();
         //int numberOfGenerations = scanner.nextInt();
 
         random = new Random();
-        String[][] previousGeneration = new String[size][size];
+        previousGeneration = new String[size][size];
 
 
         for (int i = 0; i < size; i++) {
@@ -27,17 +33,23 @@ public class Main {
                 }
             }
         }
+        countGenerations(size);
+
+    }
+
+    public static void countGenerations(int size) throws InterruptedException {
         int number = 0;
-        int numberOfGenerations = 1;
-        //System.out.println(toString(previousGeneration));
-        while (number<20) {
+        while (number < 20) {
             previousGeneration = nextGeneration(previousGeneration, size, numberOfGenerations);
             numberOfGenerations++;
             number++;
             Thread.sleep(500);
         }
 
+    }
 
+    public static int getGenerations() {
+        return numberOfGenerations;
     }
 
     public static boolean isAlive() {
@@ -51,7 +63,7 @@ public class Main {
         int east = 0;
         int south = 0;
         int west = 0;
-        int aliveNumber = 0;
+
 
         //int numberOfGenerations = 1;
         for (int i = 0; i < universeSize; i++) {
@@ -156,6 +168,10 @@ public class Main {
         System.out.println(toString(previousGeneration));
         return nextGeneration;
 
+    }
+
+    public static int getAliveNumber() {
+        return aliveNumber;
     }
 
 
